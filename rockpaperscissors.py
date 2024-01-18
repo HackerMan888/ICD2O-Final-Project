@@ -3,8 +3,8 @@ import os
 # ICD2O Final Project
 # Charlie Pyke
 # Rock Paper Scissors Program
-# My project is a text version of Rock Paper Scissors. It will have two versions: 
-# 1. classic Rock-Paper-Scissors, 
+# My project is a text version of Rock Paper Scissors. It will have two versions:
+# 1. classic Rock-Paper-Scissors,
 # 2. and the version from the Big Bang Theory, Rock-Paper-Scissors-Lizard-Spock.
 
 # searched Google for this: https://www.geeksforgeeks.org/clear-screen-python/
