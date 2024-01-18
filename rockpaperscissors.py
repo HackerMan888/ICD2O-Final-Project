@@ -12,7 +12,7 @@ import os
 os.system("clear")
 
 # Give the user my welcome prompts
-print("Welcome to Charlie\'s Rock-Paper-Scissors Game!\n\n")
+print("Welcome to Charlie's Rock-Paper-Scissors Game!\n\n")
 print("I can play two version of this game:\n")
 print("1. Classic Rock-Paper-Scissors")
 print("2. Rock-Paper-Scissors-Lizard-Spock\n")
