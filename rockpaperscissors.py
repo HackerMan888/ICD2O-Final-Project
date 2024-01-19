@@ -20,7 +20,7 @@ print("2. Rock-Paper-Scissors-Lizard-Spock\n")
 # set the choice to nothing to start
 game_choice = ""
 # loop until the user gives us an acceptable input
-while (game_choice != "1" and game_choice != "2" and game_choice != "quit"):
+while game_choice != "1" and game_choice != "2" and game_choice != "quit":
     # Ask the user what version they want to play
     game_choice = input("Which version of the game would you like to play? (1, 2, quit): ")
 
@@ -32,8 +32,21 @@ if game_choice == "quit":
 # we have a game choice.
 # set the instruction prompt to nothing to start
 instructions_prompt = ""
-while (instructions_prompt != "y" and instructions_prompt != "n"):
+while instructions_prompt != "y" and instructions_prompt != "n":
     # Ask the user if they want instructions
     instructions_prompt = input("\n\nWould you like to see the rules of the game? (y, n): ")
 
-print(instructions_prompt)
+# if the user wants instructions, give them the correct ones
+# instructions came from google: https://wrpsa.com/how-rps-rules-have-changed-over-time-an-evolution-in-strategy/
+# and https://wrpsa.com/different-variations-of-rock-paper-scissors/
+if instructions_prompt == "y":
+    if game_choice == "1":
+        print("\n\nEach player chooses one of three hand signs – rock, paper, or scissors.")
+        print("Whichever hand sign beats the other wins the round.")
+        print("Rock beats scissors, scissors cuts paper, and paper covers rock.")
+    elif game_choice == "2":
+        print("\n\nEach player chooses one of five hand signs – rock, paper, scissors, lizard, Spock.")
+        print("Whichever hand sign beats the other wins the round.")
+        print("Link in classic, Rock beats scissors, scissors cuts paper, and paper covers rock.")
+        print("Also, Spock smashes scissors and vaporizes rock, but he is poisoned by a lizard and disproven by paper.")
+        print("Lizard poisons Spock and eats paper but it is crushed by rock and decapitated by scissors.")
