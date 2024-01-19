@@ -49,22 +49,16 @@ if instructions_prompt == "y":
         print(
             "\n\nEach player chooses one of three hand signs – rock, paper, or scissors."
         )
-        print(
-            "Whichever hand sign beats the other wins the round."
-        )
-        print(
-            "Rock beats scissors, scissors cuts paper, and paper covers rock."
-        )
+        print("Whichever hand sign beats the other wins the round.")
+        print("Rock beats scissors, scissors cuts paper, and paper covers rock.")
     elif game_choice == "2":
         print(
             "\n\nEach player chooses one of five hand signs – rock, paper, scissors, lizard, Spock."
         )
-        print(
-            "Whichever hand sign beats the other wins the round."
-        )
+        print("Whichever hand sign beats the other wins the round.")
         print(
             "Link in classic, Rock beats scissors, scissors cuts paper, and paper covers rock."
-            )
+        )
         print(
             "Also, Spock smashes scissors and vaporizes rock, but he is poisoned by a lizard and disproven by paper."
         )
