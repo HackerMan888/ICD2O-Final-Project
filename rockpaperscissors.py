@@ -32,6 +32,7 @@ if game_choice == "quit":
 # we have a game choice.
 # set the instruction prompt to nothing to start
 instructions_prompt = ""
+# loop while we don't have a valid input
 while instructions_prompt != "y" and instructions_prompt != "n":
     # Ask the user if they want instructions
     instructions_prompt = input("\n\nWould you like to see the rules of the game? (y, n): ")
@@ -41,12 +42,40 @@ while instructions_prompt != "y" and instructions_prompt != "n":
 # and https://wrpsa.com/different-variations-of-rock-paper-scissors/
 if instructions_prompt == "y":
     if game_choice == "1":
-        print("\n\nEach player chooses one of three hand signs – rock, paper, or scissors.")
-        print("Whichever hand sign beats the other wins the round.")
-        print("Rock beats scissors, scissors cuts paper, and paper covers rock.")
+        print(
+            "\n\nEach player chooses one of three hand signs – rock, paper, or scissors."
+            )
+        print(
+            "Whichever hand sign beats the other wins the round."
+            )
+        print(
+            "Rock beats scissors, scissors cuts paper, and paper covers rock."
+            )
     elif game_choice == "2":
-        print("\n\nEach player chooses one of five hand signs – rock, paper, scissors, lizard, Spock.")
-        print("Whichever hand sign beats the other wins the round.")
-        print("Link in classic, Rock beats scissors, scissors cuts paper, and paper covers rock.")
-        print("Also, Spock smashes scissors and vaporizes rock, but he is poisoned by a lizard and disproven by paper.")
-        print("Lizard poisons Spock and eats paper but it is crushed by rock and decapitated by scissors.")
+        print(
+            "\n\nEach player chooses one of five hand signs – rock, paper, scissors, lizard, Spock."
+            )
+        print(
+            "Whichever hand sign beats the other wins the round."
+            )
+        print(
+            "Link in classic, Rock beats scissors, scissors cuts paper, and paper covers rock."
+            )
+        print(
+            "Also, Spock smashes scissors and vaporizes rock, but he is poisoned by a lizard and disproven by paper."
+            )
+        print(
+            "Lizard poisons Spock and eats paper but it is crushed by rock and decapitated by scissors."
+            )
+
+# now ask for the player's name
+# set the name to nothing to start
+player_name = ""
+# loop while they haven't entered anything
+while player_name == "":
+    player_name = input("\n\nWhat is your name? ")
+
+print("\n\nWelcome", player_name)
+
+# open the file to get the game statistics and display them
+# do this later!
