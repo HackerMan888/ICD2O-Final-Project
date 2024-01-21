@@ -84,7 +84,8 @@ while play_again == "y":
             )
 
         # if the user wants instructions, give them the correct ones
-        # instructions came from google: https://wrpsa.com/how-rps-rules-have-changed-over-time-an-evolution-in-strategy/
+        # instructions came from google: 
+        # https://wrpsa.com/how-rps-rules-have-changed-over-time-an-evolution-in-strategy/
         # and https://wrpsa.com/different-variations-of-rock-paper-scissors/
         if instructions_prompt == "y":
             if game_choice == "1":
@@ -99,12 +100,12 @@ while play_again == "y":
                 print(
                     "\n\nEach player chooses one of five hand signs – rock, paper, scissors, lizard, Spock."
                 )
-                print("Whichever hand sign beats the other wins the round.")
+                print("Whichever hand sign beats the other wins the round. Like in classic,")
                 print(
-                    "Like in classic, Rock smashes scissors, scissors cuts paper, and paper covers rock."
+                    "rock smashes scissors, scissors cuts paper, and paper covers rock. Also, Spock smashes"
                 )
                 print(
-                    "Also, Spock smashes scissors and vaporizes rock, but he is poisoned by a lizard and disproven by paper."
+                    "scissors and vaporizes rock, but he is poisoned by a lizard and disproven by paper."
                 )
                 print(
                     "Lizard poisons Spock and eats paper but it is crushed by rock and decapitated by scissors."
