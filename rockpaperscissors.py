@@ -84,7 +84,7 @@ while play_again == "y":
             )
 
         # if the user wants instructions, give them the correct ones
-        # instructions came from google: 
+        # instructions came from google:
         # https://wrpsa.com/how-rps-rules-have-changed-over-time-an-evolution-in-strategy/
         # and https://wrpsa.com/different-variations-of-rock-paper-scissors/
         if instructions_prompt == "y":
