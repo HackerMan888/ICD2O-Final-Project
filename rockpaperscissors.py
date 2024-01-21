@@ -121,10 +121,16 @@ elif computer_move > valid_moves_numbers[1] and computer_move <= valid_moves_num
 
 # if it's the Big Bang version, we have two more possible values
 if game_choice == "2":
-    if computer_move > valid_moves_numbers[2] and computer_move <= valid_moves_numbers[3]:
+    if (
+        computer_move > valid_moves_numbers[2]
+        and computer_move <= valid_moves_numbers[3]
+    ):
         # if it's between the third and fourth value, it's lizard
         print("My move is lizard!")
-    elif computer_move > valid_moves_numbers[3] and computer_move <= valid_moves_numbers[4]:
-        # this check could be just 'if greater than the value in [3] but we used the 
+    elif (
+        computer_move > valid_moves_numbers[3]
+        and computer_move <= valid_moves_numbers[4]
+    ):
+        # this check could be just 'if greater than the value in [3]' but we used the 
         # > [3] and <= [4] just to make sure
         print("My move is Spock!")
