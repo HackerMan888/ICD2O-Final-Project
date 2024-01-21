@@ -1,4 +1,5 @@
 import os
+import random
 
 # ICD2O Final Project
 # Charlie Pyke
@@ -77,3 +78,23 @@ print("\n\nWelcome", player_name)
 
 # open the file to get the game statistics and display them
 # do this later!
+
+# Game play!
+valid_moves = ["rock", "paper", "scissors"]
+max_random_range = 99
+
+if game_choice == "2":
+    valid_moves = ["rock", "paper", "scissors", "lizard", "spock"]
+    max_random_range = 100
+
+print("\n\nReady", player_name, "\nYour valid move choices are: ", valid_moves)
+# set player move to nothing
+player_move = ""
+while player_move not in valid_moves:
+    player_move = input("Make your move: ")
+    if player_move not in valid_moves:
+        print("Please enter a valid move!")
+
+print("Your move was: ", player_move)
+
+computer_move = random.randrange(1, max_random_range)
