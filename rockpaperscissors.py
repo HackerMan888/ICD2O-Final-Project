@@ -100,7 +100,9 @@ while play_again == "y":
                 print(
                     "\n\nEach player chooses one of five hand signs – rock, paper, scissors, lizard, Spock."
                 )
-                print("Whichever hand sign beats the other wins the round. Like in classic,")
+                print(
+                    "Whichever hand sign beats the other wins the round. Like in classic,"
+                )
                 print(
                     "rock smashes scissors, scissors cuts paper, and paper covers rock. Also, Spock smashes"
                 )
@@ -126,11 +128,12 @@ while play_again == "y":
     # set the winning_score to the same as a tie
     winning_score = 0
 
-    # clear the screen so the game looks better
-    os.system("clear")
+    # clear the screen so the game looks better, but don't clear it if they asked for instructions
+    if instructions_prompt != "y":
+        os.system("clear")
 
-    # Give the user my welcome prompts
-    print("\n\nWelcome to Charlie's Rock-Paper-Scissors Game!\n\n")
+        # Give the user my welcome prompts
+        print("\n\nWelcome to Charlie's Rock-Paper-Scissors Game!\n\n")
 
     # Tell the player what input they are allowed to use
     print(
@@ -149,7 +152,7 @@ while play_again == "y":
                 print("Please enter a valid move!\n")
 
         # tell the player their move
-        print("\n\nYour move was:", player_move, "\n\n")
+        print("\n\nYour move was:", player_move)
         # the value of the player move is the same as the index in the array plus 1
         player_move_value = valid_moves.index(player_move) + 1
 
@@ -200,7 +203,7 @@ while play_again == "y":
         winning_score = (player_move_value - computer_move_value) % len(valid_moves)
 
         if winning_score == 0:
-            print("It's a tie!")
+            print("It's a tie!\n")
 
     if (winning_score % 2) == 0:
         print("\nI win!", computer_move_text, "beats", player_move)
