@@ -92,7 +92,9 @@ while play_again == "y":
                     "\n\nEach player chooses one of three hand signs – rock, paper, or scissors."
                 )
                 print("Whichever hand sign beats the other wins the round.")
-                print("Rock smashes scissors, scissors cuts paper, and paper covers rock.")
+                print(
+                    "Rock smashes scissors, scissors cuts paper, and paper covers rock."
+                )
             elif game_choice == "2":
                 print(
                     "\n\nEach player chooses one of five hand signs – rock, paper, scissors, lizard, Spock."
@@ -130,7 +132,9 @@ while play_again == "y":
     print("\n\nWelcome to Charlie's Rock-Paper-Scissors Game!\n\n")
 
     # Tell the player what input they are allowed to use
-    print("\n\nReady", player_name, "\nYour valid move choices are: ", valid_moves, "\n")
+    print(
+        "\n\nReady", player_name, "\nYour valid move choices are: ", valid_moves, "\n"
+    )
 
     # loop while the score is a tie
     while winning_score == 0:
@@ -150,16 +154,24 @@ while play_again == "y":
 
         # generate the computer move
         # the maximum of the random number is the highest number from the value array we defined
-        computer_move = random.randrange(1, valid_moves_numbers[len(valid_moves_numbers) - 1])
+        computer_move = random.randrange(
+            1, valid_moves_numbers[len(valid_moves_numbers) - 1]
+        )
         if computer_move <= valid_moves_numbers[0]:
             # between 1 and the first value, so it's rock
             computer_move_text = "rock"
             computer_move_value = 1
-        elif computer_move > valid_moves_numbers[0] and computer_move <= valid_moves_numbers[1]:
+        elif (
+            computer_move > valid_moves_numbers[0]
+            and computer_move <= valid_moves_numbers[1]
+        ):
             # between the first and second values, so it's paper
             computer_move_text = "paper"
             computer_move_value = 2
-        elif computer_move > valid_moves_numbers[1] and computer_move <= valid_moves_numbers[2]:
+        elif (
+            computer_move > valid_moves_numbers[1]
+            and computer_move <= valid_moves_numbers[2]
+        ):
             # between the second and third values, so it's scissors
             computer_move_text = "scissors"
             computer_move_value = 3
@@ -200,7 +212,7 @@ while play_again == "y":
             while change_version != "y" and change_version != "n":
                 change_version = input(
                     "Would you like to change game versions? (y, n): "
-                    )
+                )
 
 print("\n\nThanks for playing", player_name)
 
