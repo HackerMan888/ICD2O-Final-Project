@@ -80,21 +80,51 @@ print("\n\nWelcome", player_name)
 # do this later!
 
 # Game play!
+# define an array for the text of the valid moves
 valid_moves = ["rock", "paper", "scissors"]
-max_random_range = 99
+# define an array for number representing the valid moves. This is used
+# when we generate a random number to be the computer move
+valid_moves_numbers = [33, 66, 99]
 
+# if the user wants to play the Big Bang version, update the arrays
 if game_choice == "2":
     valid_moves = ["rock", "paper", "scissors", "lizard", "spock"]
-    max_random_range = 100
+    valid_moves_numbers = [20, 40, 60, 80, 100]
 
+# Tell the player what input they are allowed to use
 print("\n\nReady", player_name, "\nYour valid move choices are: ", valid_moves)
+
 # set player move to nothing
 player_move = ""
+
+# if the player didn't give a valid input, tell them and keep prompting
 while player_move not in valid_moves:
     player_move = input("Make your move: ")
     if player_move not in valid_moves:
         print("Please enter a valid move!")
 
-print("Your move was: ", player_move)
+# tell the player their move
+print("\n\nYour move was: ", player_move, "\n\n")
 
-computer_move = random.randrange(1, max_random_range)
+# generate the computer move
+# the maximum of the random number is the highest number from the value array we defined
+computer_move = random.randrange(1, valid_moves_numbers[len(valid_moves_numbers) - 1])
+if computer_move <= valid_moves_numbers[0]:
+    # between 1 and the first value, so it's rock
+    print("My move is rock!")
+elif computer_move > valid_moves_numbers[0] and computer_move <= valid_moves_numbers[1]:
+    # between the first and second values, so it's paper
+    print("My move is paper!")
+elif computer_move > valid_moves_numbers[1] and computer_move <= valid_moves_numbers[2]:
+    # between the second and third values, so it's scissors
+    print("My move is scissors!")
+
+# if it's the Big Bang version, we have two more possible values
+if game_choice == "2":
+    if computer_move > valid_moves_numbers[2] and computer_move <= valid_moves_numbers[3]:
+        # if it's between the third and fourth value, it's lizard
+        print("My move is lizard!")
+    elif computer_move > valid_moves_numbers[3] and computer_move <= valid_moves_numbers[4]:
+        # this check could be just 'if greater than the value in [3] but we used the 
+        # > [3] and <= [4] just to make sure
+        print("My move is Spock!")
