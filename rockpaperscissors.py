@@ -41,7 +41,57 @@ while player_name == "":
 print("\n\nWelcome", player_name)
 
 # open the file to get the game statistics and display them
-# do this later!
+# copy from the same work we did in Unit5-03
+# https://sites.google.com/ocsb.ca/icd/units/unit-5/unit-5-03
+
+# The file has:
+# line 1 - total number of games played
+# line 2 - number of computer wins
+# line 3 - first high score name
+# line 4 - number of wins for the player on the line before
+# line 3 and 4 repear for the number of players we keep the score
+# for. If there are not 5 high score, the file will only have names for
+# the number of scores we have
+
+# learned by Google: https://ioflood.com/blog/python-check-if-file-exists/
+
+if (os.path.exists("highscores.txt")):
+    score_file = open("highscores.txt", 'r')
+    number_games_line = ""
+    number_wins_line = ""
+    total_number_games = 0
+    total_number_wins = 0
+    high_score_line = ""
+    high_score_list = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0]]
+
+    # get the total number of games
+    number_games_line = score_file.readline()
+    if number_games_line != "":
+        total_number_games = int(number_games_line.strip("\n"))
+
+    # get the number of wins
+    number_wins_line = score_file.readline()
+    if number_wins_line != "":
+        total_number_wins = int(number_wins_line.strip("\n"))
+
+    high_score_line = score_file.readline()
+    high_score_position = 0
+    while high_score_line != "":
+        # store the name
+        high_score_list[high_score_position][0] = high_score_line.strip("\n")
+        # get the score for the name we just stored
+        high_score_line = score_file.readline()
+        # make sure we read something properly
+        if high_score_line != "":
+            # store the name's score 
+            high_score_list[high_score_position][1] = int(high_score_line.strip("\n"))
+        else:
+            high_score_list[high_score_position][1] = 0
+        
+        # move to the next name in the list
+        high_score_position += 1
+        # get the next line in the file, which should be a name
+        high_score_line = score_file.readline()
 
 # set play_again to yes to start
 play_again = "y"
