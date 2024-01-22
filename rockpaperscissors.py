@@ -342,7 +342,7 @@ if not current_user_inserted:
 
 # Now the current user's scores are updated or added to the list
 # We need to create a new sorted list to output
-new_high_score_list = []
+new_high_score_list: list[list[str, int]] = []
 
 for old_list_position in range(0, 5):
     if len(new_high_score_list) == 0:
