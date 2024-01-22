@@ -330,7 +330,7 @@ for list_position in range(0, 5):
     # does the current user match a score in the list?
     # Update their score in the old list before writing
     if high_score_list[list_position][0] == player_name:
-        total_user_wins = int(high_score_list[list_position][1]) + current_user_wins
+        total_user_wins = high_score_list[list_position][1] + current_user_wins
         # Update their score in the old list, just to make sure
         high_score_list[list_position][1] = total_user_wins
         current_user_inserted = True
@@ -353,18 +353,18 @@ for old_list_position in range(0, 5):
                 [
                     high_score_list[old_list_position][0],
                     high_score_list[old_list_position][1],
-                ]
+                ],
             )
     else:
-        for new_list_position in range (0, len(new_high_score_list)):
+        for new_list_position in range(0, len(new_high_score_list)):
             if high_score_list[old_list_position][1] >= new_high_score_list[new_list_position][1]:
                 if high_score_list[old_list_position][0] != "":
                     new_high_score_list.insert(
                         new_list_position,
                         [
                             high_score_list[old_list_position][0],
-                            high_score_list[old_list_position][1]
-                        ]
+                            high_score_list[old_list_position][1],
+                        ],
                     )
             else:
                 # are we at the end of the new list?
@@ -375,11 +375,11 @@ for old_list_position in range(0, 5):
                             [
                                 high_score_list[old_list_position][0],
                                 high_score_list[old_list_position][1],
-                            ]
+                            ],
                         )
 
 # we should have a sorted list now
-# write the list of high scores, and update if the current player is 
+# write the list of high scores, and update if the current player is
 # now in the list
 output_position = 0
 max_output_position = len(new_high_score_list) - 1
