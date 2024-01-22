@@ -123,13 +123,12 @@ play_again = "y"
 # change game version - used later if the player keeps playing
 change_version = "y"
 
-# set the choice to nothing to start
-game_choice = ""
-
 while play_again == "y":
     play_again = ""
 
     if change_version == "y":
+        # set the choice to nothing to start
+        game_choice = ""
         # loop until the user gives us an acceptable input
         print("\n\nI can play two version of this game:\n")
         print("1. Classic Rock-Paper-Scissors")
@@ -343,7 +342,7 @@ if not current_user_inserted:
 
 # Now the current user's scores are updated or added to the list
 # We need to create a new sorted list to output
-new_high_score_list = [["", 0]]
+new_high_score_list = []
 
 for old_list_position in range(0, 5):
     if len(new_high_score_list) == 0:
