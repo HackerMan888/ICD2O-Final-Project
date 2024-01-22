@@ -53,16 +53,18 @@ print("\n\nWelcome", player_name)
 # for. If there are not 5 high score, the file will only have names for
 # the number of scores we have
 
-# learned by Google: https://ioflood.com/blog/python-check-if-file-exists/
+# path.exists learned from Google:
+# https://ioflood.com/blog/python-check-if-file-exists/
+
+total_number_games = 0
+total_number_wins = 0
+high_score_list = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0]]
 
 if (os.path.exists("highscores.txt")):
-    score_file = open("highscores.txt", 'r')
+    score_file = open("highscores.txt", "r")
     number_games_line = ""
     number_wins_line = ""
-    total_number_games = 0
-    total_number_wins = 0
     high_score_line = ""
-    high_score_list = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0]]
 
     # get the total number of games
     number_games_line = score_file.readline()
@@ -74,8 +76,13 @@ if (os.path.exists("highscores.txt")):
     if number_wins_line != "":
         total_number_wins = int(number_wins_line.strip("\n"))
 
+    print("\nSo far, I have played", total_number_games)
+    print("and I have won", number_wins_line, "times.")
+
     high_score_line = score_file.readline()
     high_score_position = 0
+    if high_score_line != "":
+        print("\nThe top winners so far are:")
     while high_score_line != "":
         # store the name
         high_score_list[high_score_position][0] = high_score_line.strip("\n")
@@ -83,11 +90,19 @@ if (os.path.exists("highscores.txt")):
         high_score_line = score_file.readline()
         # make sure we read something properly
         if high_score_line != "":
-            # store the name's score 
+            # store the name's score
             high_score_list[high_score_position][1] = int(high_score_line.strip("\n"))
         else:
             high_score_list[high_score_position][1] = 0
-        
+
+        line_to_print = (
+            str(high_score_position + 1) + ". "
+            + high_score_list[high_score_position][0]
+            + " with "
+            + high_score_list[high_score_position][1]
+            + " wins"
+        )
+        print(line_to_print)
         # move to the next name in the list
         high_score_position += 1
         # get the next line in the file, which should be a name
