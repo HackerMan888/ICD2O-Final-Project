@@ -40,6 +40,9 @@ while player_name == "":
 
 print("\n\nWelcome", player_name)
 
+# store wins for this user
+current_user_wins = 0
+
 # open the file to get the game statistics and display them
 # copy from the same work we did in Unit5-03
 # https://sites.google.com/ocsb.ca/icd/units/unit-5/unit-5-03
@@ -58,6 +61,7 @@ print("\n\nWelcome", player_name)
 
 total_number_games = 0
 total_number_wins = 0
+high_score_position = -1
 high_score_list = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0]]
 
 if os.path.exists("highscores.txt"):
@@ -77,11 +81,11 @@ if os.path.exists("highscores.txt"):
         total_number_wins = int(number_wins_line.strip("\n"))
 
     print("\nSo far, I have played", total_number_games)
-    print("and I have won", number_wins_line, "times.")
+    print("and I have won", total_number_wins, "times.")
 
     high_score_line = score_file.readline()
-    high_score_position = 0
     if high_score_line != "":
+        high_score_position = 0
         print("\nThe top winners so far are:")
 
     while high_score_line != "":
@@ -100,9 +104,9 @@ if os.path.exists("highscores.txt"):
         line_to_print = (
             str(high_score_position + 1)
             + ". "
-            + high_score_list[high_score_position][0]
+            + str(high_score_list[high_score_position][0])
             + " with "
-            + high_score_list[high_score_position][1]
+            + str(high_score_list[high_score_position][1])
             + " wins"
         )
         print(line_to_print)
@@ -111,6 +115,7 @@ if os.path.exists("highscores.txt"):
         high_score_position += 1
         # get the next line in the file, which should be a name
         high_score_line = score_file.readline()
+    score_file.close()
 
 # set play_again to yes to start
 play_again = "y"
@@ -126,7 +131,7 @@ while play_again == "y":
 
     if change_version == "y":
         # loop until the user gives us an acceptable input
-        print("I can play two version of this game:\n")
+        print("\n\nI can play two version of this game:\n")
         print("1. Classic Rock-Paper-Scissors")
         print("2. Rock-Paper-Scissors-Lizard-Spock\n")
 
@@ -135,7 +140,7 @@ while play_again == "y":
             game_choice = input(
                 "Which version of the game would you like to play? (1, 2, quit): "
             )
-        change_version = ""
+        change_version = "y"
 
         # Did the user want to quit?
         if game_choice == "quit":
@@ -208,6 +213,7 @@ while play_again == "y":
     print(
         "\n\nReady", player_name, "\nYour valid move choices are: ", valid_moves, "\n"
     )
+    # increase the number of games played
     total_number_games += 1
 
     # loop while the score is a tie
@@ -277,13 +283,17 @@ while play_again == "y":
 
     if (winning_score % 2) == 0:
         print("\nI win!", computer_move_text, "beats", player_move)
+        # increase the number of computer wins
         total_number_wins += 1
     else:
         print("\nYou win!", player_move, "beats", computer_move_text)
+        # increase the number of current user wins
+        current_user_wins += 1
 
     while play_again != "y" and play_again != "n":
         play_again = input("\n\nWould you like to keep playing? (y, n): ")
         if play_again == "y":
+            change_version = ""
             while change_version != "y" and change_version != "n":
                 change_version = input(
                     "Would you like to change game versions? (y, n): "
@@ -291,4 +301,98 @@ while play_again == "y":
 
 print("\n\nThanks for playing", player_name)
 
-# write the scores file out. Do this later
+# save the high scores
+score_file = open("highscores.txt", "w")
+# save the file in the same structure we wanted to read
+# The file has:
+# line 1 - total number of games played
+# line 2 - number of computer wins
+# line 3 - first high score name
+# line 4 - number of wins for the player on the line before
+# line 3 and 4 repear for the number of players we keep the score
+# for. If there are not 5 high score, the file will only have names for
+# the number of scores we have
+
+# write total number of games
+score_file.write(str(total_number_games) + "\n")
+# write total number of computer wins
+score_file.write(str(total_number_wins) + "\n")
+
+# update the user
+print("\nNow, I have played", total_number_games)
+print("and I have won", total_number_wins, "times.")
+
+# update the highscores list
+
+# Make sure the current user's score are added to the list
+current_user_inserted = False
+for list_position in range (0, 5):
+    # does the current user match a score in the list? 
+    # Update their score in the old list before writing
+    if high_score_list[list_position][0] == player_name:
+        # Update their score in the old list, just to make sure
+        high_score_list[list_position][1] = (
+            high_score_list[list_position][1]
+            + current_user_wins
+        )
+        current_user_inserted = True
+
+# If we did'n update the current user's score, then
+# insert the current player to the existing list
+# This adds an extra object to our list. we'll fix that later
+if not current_user_inserted:
+    high_score_list.insert(high_score_position + 1, [player_name, current_user_wins])
+
+# Now the current user's scores are updated or added to the list
+# We need to create a new sorted list to output
+new_high_score_list = []
+        
+for old_list_position in range (0, 5):
+    if len(new_high_score_list) == 0:
+        if high_score_list[old_list_position][0] != "":
+            new_high_score_list.insert(
+                0,
+                [high_score_list[old_list_position][0], high_score_list[old_list_position][1]]
+            )
+    else:
+        for new_list_position in range (0, len(new_high_score_list)):
+            if high_score_list[old_list_position][1] >= new_high_score_list[new_list_position][1]:
+                if high_score_list[old_list_position][0] != "":
+                    new_high_score_list.insert(
+                        new_list_position,
+                        [high_score_list[old_list_position][0], high_score_list[old_list_position][1]]
+                    )
+            else:
+                # are we at the end of the new list?
+                if new_list_position == (len(new_high_score_list) - 1):
+                    if high_score_list[old_list_position][0] != "":
+                        new_high_score_list.insert(
+                            new_list_position + 1,
+                            [high_score_list[old_list_position][0], high_score_list[old_list_position][1]]
+                        )
+
+# we should have a sorted list now
+# write the list of high scores, and update if the current player is 
+# now in the list
+output_position = 0
+max_output_position = len(new_high_score_list) - 1
+if  max_output_position > 4:
+    max_output_position = 4
+print("\nThe top winners so far are:")
+while output_position <= max_output_position:
+    # format a line to print
+    line_to_print = (
+        str(output_position + 1)
+        + ". "
+        + str(new_high_score_list[output_position][0])
+        + " with "
+        + str(new_high_score_list[output_position][1])
+        + " wins"
+    )
+    print(line_to_print)
+    # write name to the file
+    score_file.write(str(new_high_score_list[output_position][0]) + "\n")
+    # write score to the file
+    score_file.write(str(new_high_score_list[output_position][1]) + "\n")
+    output_position += 1
+score_file.close()
