@@ -342,7 +342,7 @@ if not current_user_inserted:
 
 # Now the current user's scores are updated or added to the list
 # We need to create a new sorted list to output
-new_high_score_list: list[object] = []
+new_high_score_list = ["", 0]
 
 for old_list_position in range(0, 5):
     if len(new_high_score_list) == 0:
@@ -389,19 +389,20 @@ if max_output_position > 4:
     max_output_position = 4
 print("\nThe top winners so far are:")
 while output_position <= max_output_position:
-    # format a line to print
-    line_to_print = (
-        str(output_position + 1)
-        + ". "
-        + str(new_high_score_list[output_position][0])
-        + " with "
-        + str(new_high_score_list[output_position][1])
-        + " wins"
-    )
-    print(line_to_print)
-    # write name to the file
-    score_file.write(str(new_high_score_list[output_position][0]) + "\n")
-    # write score to the file
-    score_file.write(str(new_high_score_list[output_position][1]) + "\n")
+    if new_high_score_list[output_position][0] != "":
+        # format a line to print
+        line_to_print = (
+            str(output_position + 1)
+            + ". "
+            + str(new_high_score_list[output_position][0])
+            + " with "
+            + str(new_high_score_list[output_position][1])
+            + " wins"
+        )
+        print(line_to_print)
+        # write name to the file
+        score_file.write(str(new_high_score_list[output_position][0]) + "\n")
+        # write score to the file
+        score_file.write(str(new_high_score_list[output_position][1]) + "\n")
     output_position += 1
 score_file.close()
