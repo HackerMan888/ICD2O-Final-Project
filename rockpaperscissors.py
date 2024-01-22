@@ -327,11 +327,12 @@ print("and I have won", total_number_wins, "times.")
 # Make sure the current user's score are added to the list
 current_user_inserted = False
 for list_position in range(0, 5):
-    # does the current user match a score in the list? 
+    # does the current user match a score in the list?
     # Update their score in the old list before writing
     if high_score_list[list_position][0] == player_name:
+        total_user_wins = int(high_score_list[list_position][1]) + current_user_wins
         # Update their score in the old list, just to make sure
-        high_score_list[list_position][1] = int(high_score_list[list_position][1]) + current_user_wins
+        high_score_list[list_position][1] = total_user_wins
         current_user_inserted = True
 
 # If we did'n update the current user's score, then
@@ -343,7 +344,7 @@ if not current_user_inserted:
 # Now the current user's scores are updated or added to the list
 # We need to create a new sorted list to output
 new_high_score_list = [["", 0]]
-        
+
 for old_list_position in range(0, 5):
     if len(new_high_score_list) == 0:
         if high_score_list[old_list_position][0] != "":
@@ -351,7 +352,7 @@ for old_list_position in range(0, 5):
                 0,
                 [
                     high_score_list[old_list_position][0],
-                    high_score_list[old_list_position][1]
+                    high_score_list[old_list_position][1],
                 ]
             )
     else:
@@ -373,7 +374,7 @@ for old_list_position in range(0, 5):
                             new_list_position + 1,
                             [
                                 high_score_list[old_list_position][0],
-                                high_score_list[old_list_position][1]
+                                high_score_list[old_list_position][1],
                             ]
                         )
 
@@ -382,7 +383,7 @@ for old_list_position in range(0, 5):
 # now in the list
 output_position = 0
 max_output_position = len(new_high_score_list) - 1
-if  max_output_position > 4:
+if max_output_position > 4:
     max_output_position = 4
 print("\nThe top winners so far are:")
 while output_position <= max_output_position:
