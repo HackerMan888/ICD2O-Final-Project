@@ -330,7 +330,7 @@ for list_position in range(0, 5):
     # does the current user match a score in the list?
     # Update their score in the old list before writing
     if high_score_list[list_position][0] == player_name:
-        total_user_wins = high_score_list[list_position][1] + current_user_wins # mypy: ignore
+        total_user_wins = high_score_list[list_position][1] + current_user_wins # type: ignore[operator]
         # Update their score in the old list, just to make sure
         high_score_list[list_position][1] = total_user_wins
         current_user_inserted = True
