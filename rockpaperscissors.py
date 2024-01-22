@@ -359,7 +359,7 @@ for old_list_position in range(0, 5):
         for new_list_position in range(0, len(new_high_score_list)):
             if (
                 high_score_list[old_list_position][1]
-                >= new_high_score_list[new_list_position][1]
+                >= new_high_score_list[new_list_position][1] # type: ignore[operator]
             ):
                 if high_score_list[old_list_position][0] != "":
                     new_high_score_list.insert(
