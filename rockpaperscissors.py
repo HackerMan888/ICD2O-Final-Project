@@ -60,7 +60,7 @@ total_number_games = 0
 total_number_wins = 0
 high_score_list = [["", 0], ["", 0], ["", 0], ["", 0], ["", 0]]
 
-if (os.path.exists("highscores.txt")):
+if os.path.exists("highscores.txt"):
     score_file = open("highscores.txt", "r")
     number_games_line = ""
     number_wins_line = ""
@@ -83,6 +83,7 @@ if (os.path.exists("highscores.txt")):
     high_score_position = 0
     if high_score_line != "":
         print("\nThe top winners so far are:")
+
     while high_score_line != "":
         # store the name
         high_score_list[high_score_position][0] = high_score_line.strip("\n")
@@ -95,14 +96,17 @@ if (os.path.exists("highscores.txt")):
         else:
             high_score_list[high_score_position][1] = 0
 
+        # format a line to print
         line_to_print = (
-            str(high_score_position + 1) + ". "
+            str(high_score_position + 1)
+            + ". "
             + high_score_list[high_score_position][0]
             + " with "
             + high_score_list[high_score_position][1]
             + " wins"
         )
         print(line_to_print)
+
         # move to the next name in the list
         high_score_position += 1
         # get the next line in the file, which should be a name
@@ -204,6 +208,7 @@ while play_again == "y":
     print(
         "\n\nReady", player_name, "\nYour valid move choices are: ", valid_moves, "\n"
     )
+    total_number_games += 1
 
     # loop while the score is a tie
     while winning_score == 0:
@@ -272,6 +277,7 @@ while play_again == "y":
 
     if (winning_score % 2) == 0:
         print("\nI win!", computer_move_text, "beats", player_move)
+        total_number_wins += 1
     else:
         print("\nYou win!", player_move, "beats", computer_move_text)
 
