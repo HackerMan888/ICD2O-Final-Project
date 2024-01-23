@@ -80,7 +80,7 @@ if os.path.exists("highscores.txt"):
     if number_wins_line != "":
         total_number_wins = int(number_wins_line.strip("\n"))
 
-    print("\nSo far, I have played", total_number_games)
+    print("\nSo far, I have played", total_number_games, "games")
     print("and I have won", total_number_wins, "times.")
 
     high_score_line = score_file.readline()
@@ -325,7 +325,7 @@ print("and I have won", total_number_wins, "times.")
 
 # Make sure the current user's score are added to the list
 current_user_inserted = False
-for list_position in range(0, 5):
+for list_position in range(0, len(high_score_list)):
     # does the current user match a score in the list?
     # Update their score in the old list before writing
     if high_score_list[list_position][0] == player_name:
@@ -338,13 +338,17 @@ for list_position in range(0, 5):
 # insert the current player to the existing list
 # This adds an extra object to our list. we'll fix that later
 if not current_user_inserted:
-    high_score_list.insert(high_score_position + 1, [player_name, current_user_wins])
+    high_score_position += 1
+    high_score_list.insert(high_score_position, [player_name, current_user_wins])
+    current_user_inserted = True
 
 # Now the current user's scores are updated or added to the list
 # We need to create a new sorted list to output
-new_high_score_list = [["", 0]]
+new_high_score_list = [["",0]]
+# the next line gets around a linting problem and an output bug
+new_high_score_list.remove(["",0])
 
-for old_list_position in range(0, 5):
+for old_list_position in range(0, len(high_score_list)):
     if len(new_high_score_list) == 0:
         if high_score_list[old_list_position][0] != "":
             new_high_score_list.insert(
@@ -368,6 +372,9 @@ for old_list_position in range(0, 5):
                             high_score_list[old_list_position][1],
                         ],
                     )
+                    # we inserted the record, so break out of the inner loop so we don't 
+                    # overwrite the rest of the scores
+                    break 
             else:
                 # are we at the end of the new list?
                 if new_list_position == (len(new_high_score_list) - 1):

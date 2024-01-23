@@ -1,8 +1,12 @@
-40
-19
+85
+42
 Charlie
 12
 Craik
+10
+Dr. Death
 6
-Bob
-3
+Dave
+5
+Scorpio
+4
