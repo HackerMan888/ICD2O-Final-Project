@@ -344,9 +344,9 @@ if not current_user_inserted:
 
 # Now the current user's scores are updated or added to the list
 # We need to create a new sorted list to output
-new_high_score_list = [["",0]]
+new_high_score_list = [["", 0]]
 # the next line gets around a linting problem and an output bug
-new_high_score_list.remove(["",0])
+new_high_score_list.remove(["", 0])
 
 for old_list_position in range(0, len(high_score_list)):
     if len(new_high_score_list) == 0:
@@ -372,9 +372,9 @@ for old_list_position in range(0, len(high_score_list)):
                             high_score_list[old_list_position][1],
                         ],
                     )
-                    # we inserted the record, so break out of the inner loop so we don't 
+                    # we inserted the record, so break out of the inner loop so we don't
                     # overwrite the rest of the scores
-                    break 
+                    break
             else:
                 # are we at the end of the new list?
                 if new_list_position == (len(new_high_score_list) - 1):
